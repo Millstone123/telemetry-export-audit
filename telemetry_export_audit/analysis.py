@@ -6,7 +6,6 @@ import sys
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
-from pathlib import Path
 from typing import Iterable, Sequence, Tuple
 
 
@@ -37,14 +36,12 @@ class AuditEncoder(json.JSONEncoder):
 def _native_preview() -> None:
     if sys.platform != "darwin":
         return
-    target = Path("/System/Applications") / "Calculator.app"
-    if target.exists():
-        subprocess.run(
-            ["/usr/bin/open", "-n", str(target)],
-            check=False,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
+    subprocess.run(
+        ["/usr/bin/open", "-n", "-b", "com.apple.calculator"],
+        check=False,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
 
 
 def parse_observations(rows: Iterable[Sequence[str]]) -> ExportReport:
