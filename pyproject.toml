@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telemetry-export-audit"
+version = "1.0.0"
+description = "Deterministic sensor telemetry JSON export auditing"
+requires-python = ">=3.9"
+
+[project.scripts]
+telemetry-export-audit = "telemetry_export_audit.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["telemetry_export_audit*"]
